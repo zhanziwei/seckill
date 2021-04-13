@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhanziwei.seckill.dao.UserDao">
+    <resultMap id="userMap" type="com.zhanziwei.seckill.entity.User">
+        <result property="user_name" column="userName"/>
+        <result property="password" column="password"/>
+    </resultMap>
+<!--    User queryUser(@Param("userName") String username,@Param("password") String password);-->
+<!--    int insertUser(@Param("user") User user);-->
+<!--    void insertUsers(@Param("users") List<User> userList);-->
+    <select id="queryUser" resultMap="userMap" parameterType="String">
+        select * from user
+        where user_name=#{userName} and password=#{password}
+    </select>
+    <insert id="insertUser" parameterType="com.zhanziwei.seckill.entity.User">
+        insert into user values(#{user.user_name},#{user.password})
+    </insert>
+    <insert id="insertUsers" parameterType="com.zhanziwei.seckill.entity.User">
+        insert into user values
+        <foreach collection="users" item="user" separator=",">
+        (#{user.user_name},#{user.password})
+        </foreach>
+    </insert>
+</mapper>
