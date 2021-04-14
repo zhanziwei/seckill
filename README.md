@@ -18,7 +18,7 @@
 
 #### DAO层编写
 1. maven创建项目
-  打开WEB-INF下的web.xml，它默认为我们创建servlet版本为2.3，需要修改它的根标签为3.0
+    打开WEB-INF下的web.xml，它默认为我们创建servlet版本为2.3，需要修改它的根标签为3.0
 
 2. pom添加第三方jar包
 
@@ -142,7 +142,11 @@
 
 4. 在mapper包下创建对应Dao接口的xml映射文件
 
+   编写用于我们操作数据库的sql语句。
+
 5. 在resources包下创建一个spring包，放置spring对Dao、Service、transaction的配置文件
+
+   
 
 6. 在spring包下创建一个spring配置dao层对象的配置文件spring-dao.xml
 
@@ -197,5 +201,16 @@
    </beans>
    ```
 
-   
+
+### service层编写
+
+1. 编写service接口，实现逻辑
+
+2. 实现dto层，用于完成web和service层的数据传递
+
+   在DTO层创建Exposer类，用于封装秒杀的地址信息，包括是否秒杀，秒杀开始，秒杀结束和秒杀商品id等信息。
+
+   实现SeckillExecution类，用于判断秒杀是否成功，成功就返回秒杀成功的所有信息(包括秒杀的商品id、秒杀成功状态、成功信息、用户明细)，失败就抛出一个我们允许的异常(重复秒杀异常、秒杀结束异常)。
+
+   使用一个Enum来作为秒杀后的各种状态；创建SeckillException类
 

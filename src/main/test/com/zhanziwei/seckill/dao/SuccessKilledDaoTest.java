@@ -1,5 +1,6 @@
 package com.zhanziwei.seckill.dao;
 
+import com.zhanziwei.seckill.entity.SuccessKilled;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,9 @@ public class SuccessKilledDaoTest {
 
     @Test
     public void queryByIdWithSecKill() {
+        long seckillId = 1000;
+        SuccessKilled insertCount = successKilledDao.queryByIdWithSecKill(seckillId, "tom");
+        System.out.println(insertCount.toString());
+        System.out.println(insertCount.getSeckill());
     }
 }

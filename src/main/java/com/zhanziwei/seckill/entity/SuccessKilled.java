@@ -7,7 +7,15 @@ public class SuccessKilled {
     String userName;
     Short state;
     Date create_time;
+    Seckill seckill;
 
+    public Seckill getSeckill() {
+        return seckill;
+    }
+
+    public void setSeckill(Seckill seckill) {
+        this.seckill = seckill;
+    }
 
     public long getSeckillId() {
         return seckillId;
